@@ -1,32 +1,19 @@
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import java.io.File
+import kotlin.system.exitProcess
 
 fun main() {
-    print("Enter the path to the program: ")
-    val filepath = readLine()  // returns a nullable String
-    println("Hello, $filepath!")
+//    print("Type in the path to the ROM file: ")
+//    val filepath = readLine() ?: exitProcess(-1)
+    val filepath = "src/roms/test.d5700"
 
-    val executor = Executors.newSingleThreadScheduledExecutor()
-
-    val runnable = Runnable {
-        println("Hello!")
-    }
-
-    val cpuFuture = executor.scheduleAtFixedRate(
-        runnable,
-        0,
-        1000L / 500L, // repeat frequency - every 2 ms
-        TimeUnit.MILLISECONDS
-    )
-
-    // to stop and interrupt a future
-    cpuFuture?.cancel(true)
-
-    // to wait for all futures to finish
     try {
-        cpuFuture.get() // waits for future to finish or be cancelled - blocks current thread execution (repeating futures will still run)
-    } catch (_: Exception) {
-        executor.shutdown() // turns off the executor allowing the program to terminate when the end is reached
+        val rom = ROM(File(filepath).readText())
+        val cpu = CPU()
+
+        cpu.run(rom)
+    } catch (e: Exception) {
+        println("Error: ${e.message}")
     }
+
 }
 
