@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="TestCPU" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-08-04T01:51:39" hostname="TOWER-DESKTOP" time="0.035">
-  <properties/>
-  <testcase name="sub()" classname="TestCPU" time="0.035"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

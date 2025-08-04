@@ -1,7 +1,11 @@
 class RAM (size: Int) {
-    val ram = Array(size) {}
+    private val ram = Array(size) { 0 }
 
-    fun getBitAt(address: Int) {
+    fun readAt(address: Int): Int {
         return ram[address]
+    }
+
+    fun writeAt(address: Int, value: Int) {
+        ram[address] = value
     }
 }
